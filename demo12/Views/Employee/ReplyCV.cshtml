@@ -1,0 +1,54 @@
+﻿@model IEnumerable<ApplicationJob>
+<head>    
+    <title>CV Form</title>
+</head>
+<body>
+    <div class="container">
+        <h3>@ViewData["Title"]</h3>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-primary btn-sm mb-3">Back to Home</a>
+        <div class="table-container">
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Id</th>
+                        <th>Email</th>
+                        <th>CV Title</th>
+                        <th>Introduction</th>
+                        <th>Action</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var applicationJob in Model)
+                        {
+                            @if (applicationJob.JobId == ViewBag.JobId)
+                            {
+                                <tr>
+                                    <td>@applicationJob.Id</td>
+                                    <td>@applicationJob.Users.Email</td>
+                                    <td>@applicationJob.Title</td>
+                                    <td>@applicationJob.Introduction</td>
+                                    <td>
+                                        <div class="btn-group" role="group">                                            
+                                            <form asp-controller="Employee" asp-action="AcceptJob">
+                                                <input type="hidden" name="jobAppId" value="@applicationJob.Id" />
+                                                <input type="hidden" name="jobId" value="@ViewBag.JobId" />
+                                                <button type="submit" class="btn btn-success btn-sm ml-2">Accept</button>
+                                            </form>
+                                            <form asp-controller="Employee" asp-action="RejectJob">
+                                                <input type="hidden" name="jobAppId" value="@applicationJob.Id" />
+                                                <input type="hidden" name="jobId" value="@ViewBag.JobId" />
+                                                <button type="submit" class="btn btn-danger btn-sm ml-2">Not Accept</button>
+                                            </form>
+                                    </td>
+                                    <td>@applicationJob.Reason</td>
+                                </tr>
+                            }
+                        }                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+

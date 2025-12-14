@@ -1,0 +1,65 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model demo12.Models.JobV
+
+
+<h1>Details</h1>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Title
+        </dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Description
+        </dd>
+        <dt class="col-sm-2">
+            Location
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Location
+        </dd>
+        <dt class="col-sm-2">
+            Industry
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Industry
+        </dd>
+        <dt class="col-sm-2">
+            Requiered
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Requiered
+        </dd>
+        <dt class="col-sm-2">
+            Deadline
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Deadline
+        </dd>        
+        <dt class="col-sm-2">
+            Salary
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.Salary
+        </dd>
+        <dt class="col-sm-2">
+            Photo
+        </dt>
+        <dd class="col-sm-10">
+            @Model.job.DImage
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-controller="Employee" asp-action="EditJob" asp-route-id="@ViewBag.JobId">Edit</a> |
+    <a asp-controller="Employee" asp-action="ReplyCV" asp-route-id="@Model.job.Id">Check CV</a>
+    <a asp-controller="Employee" asp-action="Index">Back to List</a>
+</div>

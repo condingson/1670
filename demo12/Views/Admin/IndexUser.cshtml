@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<UserRole>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Manage Users</h1>
+
+<p>
+    <a asp-action="IndexRole">Role</a>
+    <a asp-action="JobList">Job</a>
+</p>
+<table class="table-container">
+    <thead>
+        <tr>
+            <th>
+                Email
+            </th>
+            <th>
+                User Role
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => user.User.Email)</td>
+                <td>@Html.DisplayFor(modelItem => user.Role.Name)</td>
+                <td>
+                    <form asp-controller="Admin" asp-action="DeleteUser" method="post" class="d-inline">
+                        <input type="hidden" name="id" value="@user.User.Id" />
+                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

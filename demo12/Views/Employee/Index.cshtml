@@ -1,0 +1,78 @@
+﻿@model IEnumerable<demo12.Models.Job>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<h3>Are you sure you want to delete this?</h3>
+
+<p>
+    <a asp-action="CreateJob" asp-controller="Employee">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Require
+            </th>
+            <th>
+                Deadline
+            </th>
+            <th>
+                Location
+            </th>
+            <th>
+                Industry
+            </th>            
+            <th>
+                Salary
+            </th>
+            <th>
+                DImage
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Requiered)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Deadline)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Industry)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    <img src="/images/@item.DImage" alt="ImageUrl" style="width:100px; height:auto" />
+                </td>
+                <td>
+                    <a asp-action="EditJob" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="DetailJob" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="DeleteJob" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

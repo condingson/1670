@@ -1,0 +1,48 @@
+﻿@model demo12.Models.JobC
+
+
+<head>
+    
+    <title>CV Form</title>
+</head>
+<body>
+    <div class="container">
+        <h3>@ViewData["Title"]</h3>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm mb-3">Back to Home</a>
+        <div class="table-container">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>CV Title</th>
+                        <th>Introduction</th>
+                        <th>Apply Job</th>
+                        <th>Action</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        @foreach (var applicationJob in Model.applicationJob)
+                        {
+                            <tr>
+                                <td>@applicationJob.Title</td>
+                                <td>@applicationJob.Introduction</td>
+                                @foreach (var job in Model.job)
+                                {
+                                    @if (applicationJob.JobId == job.Id)
+                                    {
+                                        <td>@job.Title</td>
+                                    }
+                                }
+                                <td>                                    
+                                    <a asp-controller="Home" asp-action="EditCV" asp-route-id="@applicationJob.Id" class="btn btn-warning btn-sm">Edit CV</a>
+                                    <a asp-controller="Home" asp-action="DeleteJobApp" asp-route-id="@applicationJob.Id" class="btn btn-danger btn-sm">Delete</a>
+                                </td>
+                                <td>@applicationJob.Reason</td>
+                            </tr>
+                        }                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+

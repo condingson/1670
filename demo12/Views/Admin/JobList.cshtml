@@ -1,0 +1,49 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+@model IEnumerable<Job>
+@{
+    ViewData["Title"] = "List Jobs";
+}
+<div class="content">
+    <h3>@ViewData["Title"]</h3>
+    <div class="table-container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Requiered</th>
+                    <th>User</th>
+                    <th>DeadLine</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var job in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(model => job.Title)</td>
+                            <td>@Html.DisplayFor(model => job.Description)</td>
+                            <td>@Html.DisplayFor(model => job.Location)</td>
+                            <td>@Html.DisplayFor(model => job.Requiered)</td>
+                            <td>@Html.DisplayFor(model => job.Users.Email)</td>
+                            <td>@Html.DisplayFor(model => job.Deadline)</td>
+                            <td>@Html.DisplayFor(model => job.Salary)</td>
+                            <td><a asp-asp-controller="Admin" asp-action="DeleteJob" asp-route-id="@job.Id" class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">Users not available</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
